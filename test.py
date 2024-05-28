@@ -18,9 +18,10 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith('$optoins'):
-        await message.channel.send('Options have appered in the bacement')
-
+    if 'options' in message.content:
+        with open("./images/achievement_theresoptions.png", "rb") as fh:
+            f = discord.File(fh, filename="./images/achievement_theresoptions.png")
+        await message.channel.send(file=f)
 
 # loading variables from .env file
 load_dotenv() 
