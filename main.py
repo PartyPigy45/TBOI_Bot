@@ -12,7 +12,6 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 def is_mach(file:str, msgs:str) -> bool:
-    logging.info(f'{file[:-4].lower()} in {msgs.lower().replace(" ", "")}') if file[:-4].lower() in msgs.lower().replace(" ", "") else ""
     return file[:-4].lower() in msgs.lower().replace(" ", "")
 
 @client.event
