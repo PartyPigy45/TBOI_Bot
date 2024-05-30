@@ -11,8 +11,9 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 
-def match_text_to_image(msg:str) -> list[str]:
-    return [x for x in os.listdir("./images") if x[:-4] in msg.split(" ")]
+def is_mach(file:str, msgs:str) -> bool:
+    logging.info(f'{file[:-4].lower()} in {msgs.lower().replace(" ", "")}') if file[:-4].lower() in msgs.lower().replace(" ", "") else ""
+    return file[:-4].lower() in msgs.lower().replace(" ", "")
 
 @client.event
 async def on_ready():
@@ -20,7 +21,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    mach_list = match_text_to_image(message.content)
+    mach_list = [x for x in os.listdir("./images") if is_mach(x,message.content)]
 
     if message.author == client.user:
         return
@@ -39,5 +40,9 @@ async def on_message(message):
 # loading variables from .env file
 load_dotenv() 
 
-logging.basicConfig(filename="info.log", level=logging.DEBUG)
-client.run(os.getenv("BOT_TOKEN"))
+if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.DEBUG,
+        filename="info.log")
+
+    client.run(os.getenv("BOT_TOKEN"))

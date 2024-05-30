@@ -15,5 +15,5 @@ Assuming you have dumped all the unlocks, run `python3 add_images.py1` to add th
 ## TODO  
 
 - [ ] Make the search fuzzier
-- [ ] Host the bot on github
 - [ ] Improve logging
+- [ ] Add cooldown if people are using a word often
